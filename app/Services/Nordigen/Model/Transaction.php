@@ -295,6 +295,15 @@ class Transaction
             app('log')->warning(sprintf('Transaction "%s" has no description.', $this->transactionId));
             $description = '(no description)';
         }
+
+        if ('' !== $this->ultimateCreditor) {
+            $description = sprintf("%s | %s", $this->ultimateCreditor, $description);
+        }
+
+        if ('' !== $this->ultimateDebtor) {
+            $description = sprintf("%s | %s", $this->ultimateDebtor, $description);
+        }
+
         return $description;
     }
 
